@@ -22,6 +22,7 @@ for file in os.listdir(directory):
 
         # Convert into spectrogram
         sample_rate, samples = wavfile.read(trimmed_path)
+        samples = samples.mean(axis=1)
         frequencies, times, spectrogram = signal.spectrogram(samples, sample_rate)
 
         # Plot spectrogram
@@ -31,7 +32,7 @@ for file in os.listdir(directory):
         plt.xlabel('Time [sec]')
 
         destination = 'classical' # Change catagory for training data, else set as 'input'
-        plt.savefig(f'spectrogram/{destination}/{filename}.png', dpi=300)
+        plt.savefig(f'spectrogram/{destination}/{filename[:-4]}.png', dpi=300)
         continue
     else:
         print("non-wav audiofiles not supported")
