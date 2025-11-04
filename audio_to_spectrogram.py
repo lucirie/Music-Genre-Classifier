@@ -28,8 +28,8 @@ for file in os.listdir(directory):
         # Plot spectrogram
         plt.figure(figsize=(10, 4))
         plt.pcolormesh(times, frequencies, 10 * np.log10(spectrogram + 1e-10), shading='gouraud')
-        plt.ylabel('Frequency [Hz]')
-        plt.xlabel('Time [sec]')
+        plt.axis('off')
+        plt.tight_layout(pad=0)
 
         destination = 'classical' # Change catagory for training data, else set as 'input'
         plt.savefig(f'spectrogram/{destination}/{filename[:-4]}.png', dpi=300)
